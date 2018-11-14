@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "src/index.js",
-    "test": "mocha src/**/*.test.js",
+    "test": "nyc mocha src/**/*.test.js",
     "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
   "dependencies": {
     "chalk": "^2.4.1",
