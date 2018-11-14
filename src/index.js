@@ -17,3 +17,8 @@ program.on('--help', function() {
 program.parse(process.argv)
 
 console.log('Hello World')
+
+// TODO:
+// - core search engine
+// - params parsing (query generation)
+// - display templates
