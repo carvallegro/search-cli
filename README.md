@@ -7,6 +7,7 @@
 - [chalk](https://github.com/chalk/chalk): Colorful outputs.
 - [ora](https://github.com/sindresorhus/ora): Wait in style.
 - [conf](https://github.com/sindresorhus/conf)
+- [string-width](https://github.com/sindresorhus/string-width)
 
 ## Search libraries
 
@@ -16,6 +17,9 @@
 - http://fusejs.io/
 
 ## Potential dependencies
+
+- https://github.com/Automattic/cli-table 
+- https://github.com/timoxley/columnify
 
 - https://github.com/f/omelette
 - https://github.com/samverschueren/listr
