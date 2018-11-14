@@ -4,7 +4,7 @@ node_js:
 
 install:
   - npm install -g codecov
-  - npm install -g istanbul
+
 script:
   - test
   - npm run report-coverage
