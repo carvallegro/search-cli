@@ -1,0 +1,8 @@
+{
+  "name": "cli-search",
+  "version": "1.0.0",
+  "description": "CLI tool to search through JSON data",
+  "main": "index.js",
+  "author": "carvallegro",
+  "license": "MIT"
+}
