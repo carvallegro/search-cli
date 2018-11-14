@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 10.12.0
+
+branches:
+  only:
+  - master
+
+install:
+  - npm i
+  - npm i -g codecov
+
+script:
+  - npm test
+  - npm run report-coverage
+  - codecov

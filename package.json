@@ -4,5 +4,23 @@
   "description": "CLI tool to search through JSON data",
   "main": "index.js",
   "author": "carvallegro",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "src/index.js",
+    "test": "nyc mocha src/**/*.test.js",
+    "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "string-width": "^2.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "prettier": "1.15.2"
+  }
 }
