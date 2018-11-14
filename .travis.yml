@@ -11,6 +11,6 @@ install:
   - npm i -g codecov
 
 script:
-  - test
+  - npm test
   - npm run report-coverage
   - codecov
