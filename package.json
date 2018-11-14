@@ -8,7 +8,8 @@
   "scripts": {
     "start": "src/index.js",
     "test": "mocha src/**/*.test.js",
-    "lint:fix": "prettier --config .prettierrc --write src/**/*.js"
+    "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -16,7 +17,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "prettier": "1.15.2"
   }
 }
