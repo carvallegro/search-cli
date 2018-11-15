@@ -1,4 +1,5 @@
 # CLI Search
+[![Build Status](https://travis-ci.com/carvallegro/toy-robot-java.svg?branch=master)](https://travis-ci.com/carvallegro/toy-robot-java)[![codecov](https://codecov.io/gh/carvallegro/search-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/carvallegro/search-cli)[![CodeFactor](https://www.codefactor.io/repository/github/carvallegro/search-cli/badge)](https://www.codefactor.io/repository/github/carvallegro/search-cli)
 > See [Instructions](./INSTRUCTIONS.md)
 
 
