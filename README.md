@@ -8,7 +8,6 @@
 - https://github.com/timoxley/columnify
 
 - https://github.com/f/omelette
-- https://github.com/samverschueren/listr
 - https://github.com/isaacs/node-jake
 
 ## Dependencies
@@ -27,6 +26,7 @@
 ### General libraries
 
 - [Lodash](https://lodash.com/docs/4.17.11): because Lodash.
+- [moment](https://momentjs.com)
 
 ### Rejected dependencies
 

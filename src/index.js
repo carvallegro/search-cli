@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-var program = require('commander')
+const program = require('commander')
+const processCli = require('./process-cli')
 
-var package = require('../package.json')
+const packageFile = require('../package.json')
 
-program.version(package.version)
+program.version(packageFile.version)
 
 program.on('--help', function() {
   console.log('')
@@ -14,11 +15,15 @@ program.on('--help', function() {
   console.log('')
 })
 
+program
+  .option('-a, --attributes [attrs]', 'The attributes to search in. Comma separated list', 'all')
+  .option('-s, --sort-by [attrs]', 'The attributes to sort the result by. Comma separated list.')
+  .option('-s, --sort-order [type]', 'The attributes to sort the result by. asc or desc.', 'asc')
+
+program
+  .command('users <query>')
+  .alias('u')
+  .description('Search through the users in the "database')
+  .action(processCli.runSearch)
+
 program.parse(process.argv)
-
-console.log('Hello World')
-
-// TODO:
-// - core search engine
-// - params parsing (query generation)
-// - display templates

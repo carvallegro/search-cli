@@ -1,6 +1,5 @@
 const Fuse = require('fuse.js')
 
-
 const DEFAULT_OPTIONS = {
   id: '_id',
   threshold: 0.4,
@@ -10,12 +9,10 @@ const DEFAULT_OPTIONS = {
   minMatchCharLength: 3
 }
 
-const search = data =>
-  (query, options = {}) =>
-    new Fuse(data, {
-        ...DEFAULT_OPTIONS,
-        ...options
-      }
-    ).search(query)
+const search = data => (query, options = {}) =>
+  new Fuse(data, {
+    ...DEFAULT_OPTIONS,
+    ...options
+  }).search(query)
 
 module.exports = search

@@ -5,7 +5,7 @@ const search = require('./engine')
 const testData = [
   {
     _id: 1,
-    title: 'Old Man\'s War',
+    title: "Old Man's War",
     author: {
       firstName: 'John',
       lastName: 'Scalzi'
@@ -147,7 +147,9 @@ describe('the search engine', () => {
 
   it('should return an array of XX when searching for "Gran" with all keys', () => {
     const expectedLength = 3
-    const actual = search(testData)('Gran', { keys: ['title', 'author.firstName', 'author.lastName'] })
+    const actual = search(testData)('Gran', {
+      keys: ['title', 'author.firstName', 'author.lastName']
+    })
 
     expect(actual).to.have.length(expectedLength)
   })

@@ -33,10 +33,12 @@ describe('Functional programming utilities', () => {
     ]
 
     it('should return the expected result', () => {
-      const expected = [{
-        _id: 1,
-        name: 'Harry'
-      }]
+      const expected = [
+        {
+          _id: 1,
+          name: 'Harry'
+        }
+      ]
       const actual = fp.findById(testData)([1])
 
       expect(actual).to.deep.equal(expected)
@@ -94,7 +96,10 @@ describe('Functional programming utilities', () => {
     })
 
     it('should all of them but sorted by age and name', () => {
-      const actual = fp.search(testData)({ keys: ['role'], sortBy: ['age', 'name'] })('student')
+      const actual = fp.search(testData)({
+        keys: ['role'],
+        sortBy: ['age', 'name']
+      })('student')
 
       expect(actual).to.have.length(3)
       expect(actual[0]).to.have.property('name', 'Harry')
@@ -103,7 +108,11 @@ describe('Functional programming utilities', () => {
     })
 
     it('should all of them but sorted descending by age and name', () => {
-      const actual = fp.search(testData)({ keys: ['role'], sortBy: ['age', 'name'], sortDesc: true})('student')
+      const actual = fp.search(testData)({
+        keys: ['role'],
+        sortBy: ['age', 'name'],
+        sortDesc: true
+      })('student')
 
       expect(actual).to.have.length(3)
       expect(actual[0]).to.have.property('name', 'Hermione')
