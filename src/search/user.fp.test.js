@@ -101,5 +101,14 @@ describe('Functional programming utilities', () => {
       expect(actual[1]).to.have.property('name', 'Ron')
       expect(actual[2]).to.have.property('name', 'Hermione')
     })
+
+    it('should all of them but sorted descending by age and name', () => {
+      const actual = fp.search(testData)({ keys: ['role'], sortBy: ['age', 'name'], sortDesc: true})('student')
+
+      expect(actual).to.have.length(3)
+      expect(actual[0]).to.have.property('name', 'Hermione')
+      expect(actual[1]).to.have.property('name', 'Ron')
+      expect(actual[2]).to.have.property('name', 'Harry')
+    })
   })
 })

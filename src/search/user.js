@@ -4,6 +4,7 @@ const includes = require('lodash/fp/includes')
 const filter = require('lodash/fp/filter')
 const toInteger = require('lodash/fp/toInteger')
 const sortBy = require('lodash/fp/sortBy')
+const reverse = require('lodash/fp/reverse')
 
 const searchEngine = require('./engine')
 
@@ -31,16 +32,18 @@ const USER_KEYS = [
 
 const DEFAULT_OPTIONS = {
   keys: USER_KEYS,
-  sortBy: []
+  sortBy: [],
+  sortDesc: false
 }
 
 const generateSearchEngine = data => options => query => searchEngine(data)(query, { keys: options.keys })
 
 const identityFn = array => o => includes(o._id)(array)
 const findById = data => ids => filter(identityFn(ids))(data)
-const search = data => options => pipe(generateSearchEngine(data)(options), map(toInteger), findById(data), sortBy(options.sortBy))
+const sortOrder = ({ sortBy, sortDesc }) => data => sortBy && sortDesc ? reverse(data) : data
+const search = data => options => pipe(generateSearchEngine(data)(options), map(toInteger), findById(data), sortBy(options.sortBy), sortOrder(options))
 
-const userSearch = (query, options = DEFAULT_OPTIONS) => search(userData)(options)(query)
+const userSearch = (query, options = DEFAULT_OPTIONS) => search(userData)(Object.assign({}, DEFAULT_OPTIONS, options))(query)
 
 module.exports = {
   userSearch,
