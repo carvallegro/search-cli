@@ -53,3 +53,8 @@
 - Use Pure functional programming because I've been wanting and that was the occasion, and it was fun. Kept the Pure functional programming only for the search code because I'm slower because I'm newb.
 - Pure Functional allows to do it once, test it once and we're done.
 - Found that it's hard to figure out the coverage efficiently
+
+
+## What else could be done/discussed
+
+- Better CI (pre-commit hook)
