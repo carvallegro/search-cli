@@ -2,7 +2,7 @@ const Fuse = require('fuse.js')
 
 const DEFAULT_OPTIONS = {
   id: '_id',
-  threshold: 0.4,
+  threshold: 0,
   location: 0,
   distance: 100,
   maxPatternLength: 32,

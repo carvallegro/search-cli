@@ -4,24 +4,26 @@
 
 ### Potential dependencies
 
-- https://github.com/Automattic/cli-table
-- https://github.com/timoxley/columnify
-
+- https://github.com/matiassingers/emoji-flags
 - https://github.com/f/omelette
 - https://github.com/isaacs/node-jake
 
 ## Dependencies
 
+### Search libraries
+
+- 🎉 [fusejs](https://github.com/krisk/fuse/): Selected this search library over the other mainly because it has the most stars on Github, which is kind of an indicator of quality but also means more support from the community.
+
+
 ### CLI utilities
+
 - [commander](https://github.com/tj/commander.js): command-line interfaces made easy
-- [chalk](https://github.com/chalk/chalk): colorful outputs.
-- [ora](https://github.com/sindresorhus/ora): wait in style.
+- [chalk](https://github.com/chalk/chalk): Colorful console outputs.
+- [columnify](https://github.com/timoxley/columnify): Provide a nice output with aligned columns
+- [ora](https://github.com/sindresorhus/ora): Wait in style.
 - [string-width](https://github.com/sindresorhus/string-width)
 - [conf](https://github.com/sindresorhus/conf)
 
-### Search libraries🎉
-
-- 🎉 [fusejs](https://github.com/krisk/fuse/): Selected this search library over the other mainly because it has the most stars on Github, which is kind of an indicator of quality but also means more support from the community.
 
 ### General libraries
 
@@ -34,7 +36,6 @@
 
 - [cliffy](https://github.com/drew-y/cliffy): If I needed more features or a full blown CLI app i'd have use this.
 - [multi-spinner](https://github.com/codekirei/node-multispinner): Just liked ora better
-- https://github.com/kentcdodds/cross-env
 
 ### Search Libraries
 
@@ -49,6 +50,11 @@
 ### Search engine
 
 - Use Fuse.js because that's more efficient than my work anyway so I might as well (+ efficient)
-- Use Pure functional programming because I've been wanting and that was the occasion. Kept the Pure functional programming only for the search code because I'm slower because I'm newb.
+- Use Pure functional programming because I've been wanting and that was the occasion, and it was fun. Kept the Pure functional programming only for the search code because I'm slower because I'm newb.
 - Pure Functional allows to do it once, test it once and we're done.
 - Found that it's hard to figure out the coverage efficiently
+
+
+## What else could be done/discussed
+
+- Better CI (pre-commit hook)
