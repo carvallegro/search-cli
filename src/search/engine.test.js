@@ -146,7 +146,7 @@ describe('the search engine', () => {
   })
 
   it('should return an array of XX when searching for "Gran" with all keys', () => {
-    const expectedLength = 3
+    const expectedLength = 2
     const actual = search(testData)('Gran', {
       keys: ['title', 'author.firstName', 'author.lastName']
     })
