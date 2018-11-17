@@ -26,4 +26,22 @@ program
   .description('Search through the users in the "database')
   .action(processCli.runSearch)
 
+program
+  .command('organizations <query>')
+  .alias('o')
+  .description('Search through the organisations in the "database')
+  .action(processCli.runSearch)
+
+// error on unknown commands
+program
+  .on('command:*', () => {
+    console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
+    process.exit(1)
+  })
+
 program.parse(process.argv)
+
+console.log('hello world')
+
+console.error('No command specified\nSee --help for a list of available commands.', program.args.join(' '))
+process.exit(1)

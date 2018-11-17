@@ -43,6 +43,7 @@ const identityFn = array => o => includes(o._id)(array)
 const findById = data => ids => filter(identityFn(ids))(data)
 const sortOrder = ({ sortBy, sortDesc }) => data =>
   sortBy && sortDesc ? reverse(data) : data
+
 const search = data => options =>
   pipe(
     generateSearchEngine(data)(options),
