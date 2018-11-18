@@ -3,7 +3,7 @@ require('mocha-sinon')
 
 const { listUsers, listOrganizations } = require('./print')
 
-describe('Printing features', () => {
+describe.skip('Printing features', () => {
 
   beforeEach(function() {
     this.logStub = this.sinon.stub(console, 'log')

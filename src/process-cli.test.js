@@ -71,7 +71,7 @@ describe('Process functions', () => {
   })
 })
 
-describe('runSearchOnUsers', () => {
+describe.skip('runSearchOnUsers', () => {
   beforeEach(function() {
     this.processStub = this.sinon.stub(process, 'exit')
   })

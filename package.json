@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "src/index.js",
-    "test": "nyc mocha src/*.test.js",
+    "test": "nyc mocha --recursive src/**/*.test.js src/*.test.js ",
     "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },

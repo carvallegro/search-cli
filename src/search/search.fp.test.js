@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 
-const { fp } = require('./user')
+const { fp } = require('./index')
 
 describe('Functional programming utilities', () => {
   2

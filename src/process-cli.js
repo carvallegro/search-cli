@@ -1,7 +1,7 @@
 const split = require('lodash/split')
 const isNil = require('lodash/isNil')
 
-const { userSearch, organizationSearch } = require('./search/user')
+const { userSearch, organizationSearch } = require('./search/index')
 const print = require('./print')
 
 const domains= {
