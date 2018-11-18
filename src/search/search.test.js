@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 
-const { userSearch } = require('./user')
+const { userSearch } = require('./index')
 
 describe('the user search', () => {
   it('should return empty when keys is an empty string', () => {

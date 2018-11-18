@@ -1,6 +1,7 @@
 const expect = require('chai').expect
+require('mocha-sinon')
 
-const process = require('./process-cli')
+const processCli = require('./process-cli')
 
 describe('Process functions', () => {
 
@@ -16,7 +17,7 @@ describe('Process functions', () => {
         sortBy: undefined,
         sortDesc: false
       }
-      const actual = process.generateOptions(param)
+      const actual = processCli.generateOptions(param)
       expect(actual).to.deep.equal(expected)
     })
 
@@ -31,7 +32,7 @@ describe('Process functions', () => {
         sortBy: undefined,
         sortDesc: false
       }
-      const actual = process.generateOptions(param)
+      const actual = processCli.generateOptions(param)
       expect(actual).to.deep.equal(expected)
     })
 
@@ -46,26 +47,46 @@ describe('Process functions', () => {
         sortBy: ['x', 'y', 'z'],
         sortDesc: true
       }
-      const actual = process.generateOptions(param)
+      const actual = processCli.generateOptions(param)
       expect(actual).to.deep.equal(expected)
     })
   })
 
   describe('#generateKeys', () => {
     it('should return undefined when null is given', () => {
-      expect(process.generateKeys(null)).to.be.undefined
+      expect(processCli.generateKeys(null)).to.be.undefined
     })
 
     it('should return undefined when undefined is given', () => {
-      expect(process.generateKeys(undefined)).to.be.undefined
+      expect(processCli.generateKeys(undefined)).to.be.undefined
     })
 
     it('should return undefined when "all" is given', () => {
-      expect(process.generateKeys('all')).to.be.undefined
+      expect(processCli.generateKeys('all')).to.be.undefined
     })
 
     it('should return array when value is give is given', () => {
-      expect(process.generateKeys('a,b,c')).to.deep.equal(['a', 'b', 'c'])
+      expect(processCli.generateKeys('a,b,c')).to.deep.equal(['a', 'b', 'c'])
     })
+  })
+})
+
+describe('#runSearchOn', () => {
+  beforeEach(function() {
+    this.processStub = this.sinon.stub(process, 'exit')
+  })
+
+  afterEach(function() {
+    this.processStub.reset()
+  })
+
+  it('should fail when running a search on a non existing domain', () => {
+    expect(processCli.runSearchOn('not a domain')).to.throw('This domain does not exist')
+  })
+
+  it('should do nothing when proper search', () => {
+    processCli.runSearchOn('users')('tes',{parent: {}})
+
+    expect(true).to.be.true
   })
 })

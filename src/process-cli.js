@@ -1,13 +1,30 @@
 const split = require('lodash/split')
 const isNil = require('lodash/isNil')
 
-const { userSearch } = require('./search/user')
+const { userSearch, organizationSearch } = require('./search/index')
 const print = require('./print')
 
-const runSearch = (query, cmd) => {
+const domains= {
+  users: {
+    search: userSearch,
+    print: print.listUsers
+  },
+  organizations: {
+    search: organizationSearch,
+    print: print.listOrganizations
+  }
+}
+
+const runSearchOn = domain => (query, cmd) => {
+  if(isNil(domains[domain])){
+    throw new Error('This domain does not exist')
+  }
+
   const options = generateOptions(cmd.parent)
-  const result = userSearch(query, options)
+  const result = domains[domain].search(query, options)
   print.listUsers(result)
+  domains[domain].print(result)
+  process.exit(0)
 }
 
 const generateOptions = ({ attributes, sortBy, sortOrder }) => ({
@@ -24,11 +41,12 @@ const generateKeys = function(attributes) {
   if (attributes === 'all') {
     return undefined
   }
+
   return split(attributes, ',')
 }
 
 module.exports = {
-  runSearch,
+  runSearchOn,
   generateOptions,
   generateKeys
 }

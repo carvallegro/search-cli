@@ -15,4 +15,11 @@ const search = data => (query, options = {}) =>
     ...options
   }).search(query)
 
-module.exports = search
+const generateSearchEngine = data => options => query =>
+  search(data)(query, { keys: options.keys })
+
+
+module.exports = {
+  search,
+  generateSearchEngine
+}

@@ -24,6 +24,21 @@ program
   .command('users <query>')
   .alias('u')
   .description('Search through the users in the "database')
-  .action(processCli.runSearch)
+  .action(processCli.runSearchOn('users'))
+
+program
+  .command('organizations <query>')
+  .alias('o')
+  .description('Search through the organisations in the "database')
+  .action(processCli.runSearchOn('organizations'))
+
+program
+  .on('command:*', () => {
+    console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
+    process.exit(1)
+  })
 
 program.parse(process.argv)
+
+console.error('No command specified\nSee --help for a list of available commands.', program.args.join(' '))
+process.exit(1)
