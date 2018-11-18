@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "src/index.js",
-    "test": "nyc mocha src/**/*.test.js",
+    "test": "nyc mocha src/*.test.js",
     "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
@@ -17,7 +17,9 @@
     "commander": "^2.19.0",
     "fuse.js": "^3.3.0",
     "lodash": "^4.17.11",
+    "mocha-sinon": "^2.1.0",
     "moment": "^2.22.2",
+    "sinon": "^7.1.1",
     "string-width": "^2.1.1",
     "terminal-link": "^1.1.0"
   },

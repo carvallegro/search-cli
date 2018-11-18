@@ -127,27 +127,27 @@ const testData = [
 
 describe('the search engine', () => {
   it('should return empty array when no keys are defined', () => {
-    const actual = search(testData)('test')
+    const actual = search.search(testData)('test')
 
     expect(actual).to.be.empty
   })
 
   it('should return empty array when searching for "Hawking" with author.firstName as keys', () => {
-    const actual = search(testData)('Hawking', { keys: ['author.firstName'] })
+    const actual = search.search(testData)('Hawking', { keys: ['author.firstName'] })
 
     expect(actual).to.be.empty
   })
 
   it('should return [15] when searching for "Hawking" with author.lastName as keys', () => {
     const expected = ['15']
-    const actual = search(testData)('Hawking', { keys: ['author.lastName'] })
+    const actual = search.search(testData)('Hawking', { keys: ['author.lastName'] })
 
     expect(actual).to.deep.equal(expected)
   })
 
   it('should return an array of XX when searching for "Gran" with all keys', () => {
     const expectedLength = 2
-    const actual = search(testData)('Gran', {
+    const actual = search.search(testData)('Gran', {
       keys: ['title', 'author.firstName', 'author.lastName']
     })
 

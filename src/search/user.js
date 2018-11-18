@@ -6,9 +6,10 @@ const toInteger = require('lodash/fp/toInteger')
 const sortBy = require('lodash/fp/sortBy')
 const reverse = require('lodash/fp/reverse')
 const defaultTo = require('lodash/fp/defaultTo')
-const searchEngine = require('./engine')
+const {generateSearchEngine} = require('./engine')
 
 const userData = require('./data/users.json')
+const organizationData = require('./data/organizations.json')
 
 const USER_KEYS = [
   '_id',
@@ -25,24 +26,34 @@ const USER_KEYS = [
   'suspended',
   'role',
   // Private keys
-  'url',
-  'last_login_at',
-  'external_id'
+  // 'url',
+  // 'last_login_at',
+  // 'external_id'
 ]
 
+const ORGANIZATION_KEYS = []
+
 const DEFAULT_OPTIONS = {
-  keys: USER_KEYS,
   sortBy: [],
   sortDesc: false
 }
 
-const generateSearchEngine = data => options => query =>
-  searchEngine(data)(query, { keys: options.keys })
+const USER_OPTIONS = {
+  ...DEFAULT_OPTIONS,
+  keys: USER_KEYS
+}
 
-const identityFn = array => o => includes(o._id)(array)
-const findById = data => ids => filter(identityFn(ids))(data)
-const sortOrder = ({ sortBy, sortDesc }) => data =>
-  sortBy && sortDesc ? reverse(data) : data
+const ORGANIZATION_OPTIONS = {
+  ...DEFAULT_OPTIONS,
+  keys: ORGANIZATION_KEYS
+}
+
+const userSearch = (query, options = USER_OPTIONS) =>
+  search(userData)(getOptions(options, USER_OPTIONS))(query)
+
+const organizationSearch = (query, options = ORGANIZATION_OPTIONS) =>
+  search(organizationData)(getOptions(options, ORGANIZATION_OPTIONS))(query)
+
 
 const search = data => options =>
   pipe(
@@ -53,17 +64,21 @@ const search = data => options =>
     sortOrder(options)
   )
 
+const identityFn = array => o => includes(o._id)(array)
+const findById = data => ids => filter(identityFn(ids))(data)
+const sortOrder = ({ sortBy, sortDesc }) => data =>
+  sortBy && sortDesc ? reverse(data) : data
+
 const getOptions = (options, defaults) => ({
   keys: defaultTo(defaults.keys, options.keys),
   sortBy: defaultTo(defaults.sortBy, options.sortBy),
   sortDesc: defaultTo(defaults.sortDesc, options.sortDesc)
 })
 
-const userSearch = (query, options = DEFAULT_OPTIONS) =>
-  search(userData)(getOptions(options, DEFAULT_OPTIONS))(query)
 
 module.exports = {
   userSearch,
+  organizationSearch,
   fp: {
     findById,
     identityFn,

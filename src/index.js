@@ -24,15 +24,14 @@ program
   .command('users <query>')
   .alias('u')
   .description('Search through the users in the "database')
-  .action(processCli.runSearch)
+  .action(processCli.runSearchOnUsers)
 
 program
   .command('organizations <query>')
   .alias('o')
   .description('Search through the organisations in the "database')
-  .action(processCli.runSearch)
+  .action(processCli.runSearchOnOrganizations)
 
-// error on unknown commands
 program
   .on('command:*', () => {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
@@ -40,8 +39,6 @@ program
   })
 
 program.parse(process.argv)
-
-console.log('hello world')
 
 console.error('No command specified\nSee --help for a list of available commands.', program.args.join(' '))
 process.exit(1)
