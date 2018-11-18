@@ -11,7 +11,7 @@ const {generateSearchEngine} = require('./engine')
 const userData = require('./data/users.json')
 const organizationData = require('./data/organizations.json')
 
-const USER_KEYS = [
+const USER_PUBLIC_KEYS = [
   '_id',
   'name',
   'alias',
@@ -31,7 +31,13 @@ const USER_KEYS = [
   // 'external_id'
 ]
 
-const ORGANIZATION_KEYS = []
+const ORGANIZATION_PUBLIC_KEYS = [
+  '_id',
+  'name',
+  'domain_names',
+  'details',
+  'tags'
+]
 
 const DEFAULT_OPTIONS = {
   sortBy: [],
@@ -40,12 +46,12 @@ const DEFAULT_OPTIONS = {
 
 const USER_OPTIONS = {
   ...DEFAULT_OPTIONS,
-  keys: USER_KEYS
+  keys: USER_PUBLIC_KEYS
 }
 
 const ORGANIZATION_OPTIONS = {
   ...DEFAULT_OPTIONS,
-  keys: ORGANIZATION_KEYS
+  keys: ORGANIZATION_PUBLIC_KEYS
 }
 
 const userSearch = (query, options = USER_OPTIONS) =>
@@ -53,7 +59,6 @@ const userSearch = (query, options = USER_OPTIONS) =>
 
 const organizationSearch = (query, options = ORGANIZATION_OPTIONS) =>
   search(organizationData)(getOptions(options, ORGANIZATION_OPTIONS))(query)
-
 
 const search = data => options =>
   pipe(
@@ -74,7 +79,6 @@ const getOptions = (options, defaults) => ({
   sortBy: defaultTo(defaults.sortBy, options.sortBy),
   sortDesc: defaultTo(defaults.sortDesc, options.sortDesc)
 })
-
 
 module.exports = {
   userSearch,

@@ -12,8 +12,7 @@ const domains= {
   organizations: {
     search: organizationSearch,
     print: print.listOrganizations
-  },
-
+  }
 }
 
 const runSearchOnUsers = (query, cmd) => {
@@ -24,32 +23,11 @@ const runSearchOnUsers = (query, cmd) => {
 }
 
 const runSearchOnOrganizations = (query, cmd) => {
-  // const options = generateOptions(cmd.parent)
-  // const result = userSearch(query, options)
-  print.listOrganizations([{
-    "_id": 101,
-    "url": "http://initech.zendesk.com/api/v2/organizations/101.json",
-    "external_id": "9270ed79-35eb-4a38-a46f-35725197ea8d",
-    "name": "Enthaze",
-    "domain_names": [
-      "kage.com",
-      "ecratic.com",
-      "endipin.com",
-      "zentix.com"
-    ],
-    "created_at": "2016-05-21T11:10:28 -10:00",
-    "details": "MegaCorp",
-    "shared_tickets": false,
-    "tags": [
-      "Fulton",
-      "West",
-      "Rodriguez",
-      "Farley"
-    ]
-  }])
+  const options = generateOptions(cmd.parent)
+  const result = organizationSearch(query, options)
+  print.listOrganizations(result)
   process.exit(0)
 }
-
 
 const generateOptions = ({ attributes, sortBy, sortOrder }) => ({
   keys: generateKeys(attributes),

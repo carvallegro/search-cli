@@ -47,7 +47,7 @@ const listOrganizations = (organizations = []) => {
 
 const getOrganizationLine = organization => ({
   id: getChalkedId(organization),
-  name: `${chalk.green(organization.name)} ${chalk.grey(`(details ${organization.details})`)}`,
+  name: `${chalk.green(organization.name)} ${chalk.grey(`(${organization.details})`)}`,
   'shared tickets': organization.shared_tickets ? '✅' : '❌',
   created: moment(organization.created_at, ZENDESK_DATE_FORMAT).from(),
   tags: join(organization.tags, ', '),
