@@ -71,7 +71,7 @@ describe('Process functions', () => {
   })
 })
 
-describe.skip('runSearchOnUsers', () => {
+describe('#runSearchOn', () => {
   beforeEach(function() {
     this.processStub = this.sinon.stub(process, 'exit')
   })
@@ -80,8 +80,13 @@ describe.skip('runSearchOnUsers', () => {
     this.processStub.reset()
   })
 
-  it('first Test', () => {
-    processCli.runSearchOnUsers('test', { parent: {} })
+  it('should fail when running a search on a non existing domain', () => {
+    expect(processCli.runSearchOn('not a domain')).to.throw('This domain does not exist')
   })
 
+  it('should do nothing when proper search', () => {
+    processCli.runSearchOn('users')('tes',{parent: {}})
+
+    expect(true).to.be.true
+  })
 })

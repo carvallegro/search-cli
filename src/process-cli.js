@@ -15,17 +15,15 @@ const domains= {
   }
 }
 
-const runSearchOnUsers = (query, cmd) => {
-  const options = generateOptions(cmd.parent)
-  const result = userSearch(query, options)
-  print.listUsers(result)
-  process.exit(0)
-}
+const runSearchOn = domain => (query, cmd) => {
+  if(isNil(domains[domain])){
+    throw new Error('This domain does not exist')
+  }
 
-const runSearchOnOrganizations = (query, cmd) => {
   const options = generateOptions(cmd.parent)
-  const result = organizationSearch(query, options)
-  print.listOrganizations(result)
+  const result = domains[domain].search(query, options)
+  print.listUsers(result)
+  domains[domain].print(result)
   process.exit(0)
 }
 
@@ -48,8 +46,7 @@ const generateKeys = function(attributes) {
 }
 
 module.exports = {
-  runSearchOnUsers,
-  runSearchOnOrganizations,
+  runSearchOn,
   generateOptions,
   generateKeys
 }
