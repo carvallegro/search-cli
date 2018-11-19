@@ -10,6 +10,7 @@ const {generateSearchEngine} = require('./core')
 
 const userData = require('./data/users.json')
 const organizationData = require('./data/organizations.json')
+const ticketData = require('./data/tickets')
 
 const USER_PUBLIC_KEYS = [
   '_id',
@@ -39,6 +40,25 @@ const ORGANIZATION_PUBLIC_KEYS = [
   'tags'
 ]
 
+const TICKET_PUBLIC_KEYS = [
+  '_id',
+  'url',
+  'external_id',
+  'created_at',
+  'type',
+  'subject',
+  'description',
+  'priority',
+  'status',
+  'submitter_id',
+  'assignee_id',
+  'organization_id',
+  'tags',
+  'has_incidents',
+  'due_at',
+  'via'
+]
+
 const DEFAULT_OPTIONS = {
   sortBy: [],
   sortDesc: false
@@ -54,11 +74,19 @@ const ORGANIZATION_OPTIONS = {
   keys: ORGANIZATION_PUBLIC_KEYS
 }
 
-const userSearch = (query, options = USER_OPTIONS) =>
+const TICKET_OPTIONS = {
+  ...DEFAULT_OPTIONS,
+  keys: TICKET_PUBLIC_KEYS
+}
+
+const userSearch = (query, options = {}) =>
   search(userData)(getOptions(options, USER_OPTIONS))(query)
 
-const organizationSearch = (query, options = ORGANIZATION_OPTIONS) =>
+const organizationSearch = (query, options = {}) =>
   search(organizationData)(getOptions(options, ORGANIZATION_OPTIONS))(query)
+
+const ticketSearch = (query, options = {}) =>
+  search(ticketData)(getOptions(options, TICKET_OPTIONS))(query)
 
 const search = data => options =>
   pipe(
@@ -83,6 +111,7 @@ const getOptions = (options, defaults) => ({
 module.exports = {
   userSearch,
   organizationSearch,
+  ticketSearch,
   fp: {
     findById,
     identityFn,
