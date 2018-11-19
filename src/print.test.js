@@ -128,8 +128,8 @@ describe('utils', () => {
 
   describe('#formatDate', () => {
     it('should return a date from Zendesk format to output format', () => {
-      const actual = utils.formatDate('2013-07-03T06:59:27 -10:00')
-      const expected = '04-07-13, 2:59am'
+      const actual = utils.formatDate('2013-07-03T06:59:27 UTC')
+      const expected = '03-07-13, 6:59am'
       expect(actual).to.be.equal(expected)
     })
   })
