@@ -1,19 +1,78 @@
 # CLI Search [![Build Status](https://travis-ci.com/carvallegro/toy-robot-java.svg?branch=master)](https://travis-ci.com/carvallegro/toy-robot-java) [![codecov](https://codecov.io/gh/carvallegro/search-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/carvallegro/search-cli) [![CodeFactor](https://www.codefactor.io/repository/github/carvallegro/search-cli/badge)](https://www.codefactor.io/repository/github/carvallegro/search-cli)
 > See [Instructions](./INSTRUCTIONS.md)
 
+## Table of Content
+* [Install and run](#install-and-run)
+  * [Usage](#usage)
+    + [Commands](#commands)
+    + [Options](#options)
+  * [Technical decisions](#technical-decisions)
+    + [Architecture](#architecture)
+      - [Input](#input)
+      - [Process](#process)
+      - [Search](#search)
+      - [Print](#print)
+    + [Precisions](#precisions)
+      - [Dates](#dates)
+      - [Binaries](#binaries)
+      - [(Pure?) Functional programming](#pure-functional-programming)
+      - [Tests](#tests)
+      - [CI/CD](#cicd)
+  * [Dependencies](#dependencies)
+    + [Search libraries](#search-libraries)
+    + [CLI utilities](#cli-utilities)
+    + [General libraries](#general-libraries)
 
 
 ## Install and run
 
+Pre requisites:
+- nvm
+- Node v10.12.0
+- yarn
+
+Install dependencies with :
+```
+# If you use yarn
+yarn
+
+#If you use npm
+npm i
+```
+
+To run the CLI:
+```
+(npm|yarn) start <command> <options>
+```
+
+Find the different commands and options in the next step
+
 ## Usage
 
-### Search
+```
+(npm|yarn) start <command> <options> <query>
+```
 
-### Get keys
 
-### Help
+### Commands
+
+  - `users` (shortcut: `u`): Search through the users in the "database
+  - `organizations`: (shortcut: `o`): Search through the organisations in the "database
+  - `tickets` (shortcut: `t`): Search through the tickets in the "database
+  - `print-keys`(shortcut: `pk`): Displays all of the keys for, respectively, users, organizations and tickets.
+
+### Options
+
+  - `-V`, `--version`: output the version number
+  - `-a`, `--attributes`: Followed with a comma-separated list. The attributes to search in. (default: "all")
+  - `-s`, `--sort-by`: Followed with a comma-separated list. The attributes to sort the result by. Comma separated list.
+  - `-s`, `--sort-order`: The sorting order. asc or desc. (default: "asc")
+  - `-h`, `--help`: output usage information
+
 
 ## Technical decisions
+
+
 
 ### Architecture
 
@@ -128,9 +187,3 @@ Given more time or a professional project I'd have run pre-commit hooks to run l
 
 - [Lodash](https://lodash.com/docs/4.17.11): because Lodash.
 - [moment](https://momentjs.com): For a better time display.
-
-### Potential dependencies
-
-- https://github.com/matiassingers/emoji-flags
-- https://github.com/f/omelette
-- https://github.com/isaacs/node-jake

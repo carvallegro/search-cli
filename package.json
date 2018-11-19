@@ -9,7 +9,8 @@
     "start": "src/index.js",
     "test": "nyc mocha --recursive src/**/*.test.js src/*.test.js ",
     "lint:fix": "prettier --config .prettierrc --write src/**/*.js",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov",
+    "generate-toc": "markdown-toc README.md"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -17,10 +18,8 @@
     "commander": "^2.19.0",
     "fuse.js": "^3.3.0",
     "lodash": "^4.17.11",
-    "mocha-sinon": "^2.1.0",
+    "markdown-toc": "^1.2.0",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.23",
-    "sinon": "^7.1.1",
     "string-width": "^2.1.1",
     "terminal-link": "^1.1.0"
   },
@@ -28,7 +27,9 @@
     "chai": "^4.2.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
+    "mocha-sinon": "^2.1.0",
     "nyc": "^13.1.0",
-    "prettier": "1.15.2"
+    "prettier": "1.15.2",
+    "sinon": "^7.1.1"
   }
 }

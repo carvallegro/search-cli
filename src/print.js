@@ -1,6 +1,7 @@
 const join = require('lodash/join')
 const isEmpty = require('lodash/isEmpty')
 const isNil = require('lodash/isNil')
+const mapKeys = require('lodash/mapKeys')
 
 const chalk = require('chalk')
 const columnify = require('columnify')
@@ -226,10 +227,13 @@ const colorStatus = status => {
   }
 }
 
+const printKeys = keys => mapKeys(keys, (v, k) => console.log('\t', chalk.bold(k), join(v, ', ')))
+
 module.exports = {
   printUsers,
   printOrganizations,
   printTickets,
+  printKeys,
   utils: {
     getOrganizationCell,
     getUserCell,

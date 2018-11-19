@@ -98,6 +98,11 @@ module.exports = {
   ticketSearch,
   findUserById,
   findOrganizationById,
+  keys: {
+    users: USER_PUBLIC_KEYS,
+    organizations: ORGANIZATION_PUBLIC_KEYS,
+    tickets: TICKET_PUBLIC_KEYS
+  },
   fp: {
     findById,
     identityFn,
