@@ -18,7 +18,6 @@ const search = data => (query, options = {}) =>
 const generateSearchEngine = data => options => query =>
   search(data)(query, { keys: options.keys })
 
-
 module.exports = {
   search,
   generateSearchEngine

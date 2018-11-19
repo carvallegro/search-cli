@@ -133,14 +133,18 @@ describe('the search engine', () => {
   })
 
   it('should return empty array when searching for "Hawking" with author.firstName as keys', () => {
-    const actual = search.search(testData)('Hawking', { keys: ['author.firstName'] })
+    const actual = search.search(testData)('Hawking', {
+      keys: ['author.firstName']
+    })
 
     expect(actual).to.be.empty
   })
 
   it('should return [15] when searching for "Hawking" with author.lastName as keys', () => {
     const expected = ['15']
-    const actual = search.search(testData)('Hawking', { keys: ['author.lastName'] })
+    const actual = search.search(testData)('Hawking', {
+      keys: ['author.lastName']
+    })
 
     expect(actual).to.deep.equal(expected)
   })
