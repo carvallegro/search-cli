@@ -3,13 +3,16 @@ const map = require('lodash/fp/map')
 const includes = require('lodash/fp/includes')
 const filter = require('lodash/fp/filter')
 const toInteger = require('lodash/fp/toInteger')
+const toString = require('lodash/fp/toString')
 const sortBy = require('lodash/fp/sortBy')
 const reverse = require('lodash/fp/reverse')
 const defaultTo = require('lodash/fp/defaultTo')
-const {generateSearchEngine} = require('./engine')
+
+const { generateSearchEngine } = require('./core')
 
 const userData = require('./data/users.json')
 const organizationData = require('./data/organizations.json')
+const ticketData = require('./data/tickets.json')
 
 const USER_PUBLIC_KEYS = [
   '_id',
@@ -24,11 +27,7 @@ const USER_PUBLIC_KEYS = [
   'signature',
   'tags',
   'suspended',
-  'role',
-  // Private keys
-  // 'url',
-  // 'last_login_at',
-  // 'external_id'
+  'role'
 ]
 
 const ORGANIZATION_PUBLIC_KEYS = [
@@ -38,6 +37,8 @@ const ORGANIZATION_PUBLIC_KEYS = [
   'details',
   'tags'
 ]
+
+const TICKET_PUBLIC_KEYS = ['created_at', 'type', 'subject', 'description']
 
 const DEFAULT_OPTIONS = {
   sortBy: [],
@@ -54,23 +55,31 @@ const ORGANIZATION_OPTIONS = {
   keys: ORGANIZATION_PUBLIC_KEYS
 }
 
-const userSearch = (query, options = USER_OPTIONS) =>
+const TICKET_OPTIONS = {
+  ...DEFAULT_OPTIONS,
+  keys: TICKET_PUBLIC_KEYS
+}
+
+const userSearch = (query, options = {}) =>
   search(userData)(getOptions(options, USER_OPTIONS))(query)
 
-const organizationSearch = (query, options = ORGANIZATION_OPTIONS) =>
+const organizationSearch = (query, options = {}) =>
   search(organizationData)(getOptions(options, ORGANIZATION_OPTIONS))(query)
+
+const ticketSearch = (query, options = {}) =>
+  search(ticketData)(getOptions(options, TICKET_OPTIONS))(query)
 
 const search = data => options =>
   pipe(
     generateSearchEngine(data)(options),
-    map(toInteger),
+    map(toString),
     findById(data),
     sortBy(options.sortBy),
     sortOrder(options)
   )
 
-const identityFn = array => o => includes(o._id)(array)
 const findById = data => ids => filter(identityFn(ids))(data)
+const identityFn = array => o => includes(`${o._id}`)(array)
 const sortOrder = ({ sortBy, sortDesc }) => data =>
   sortBy && sortDesc ? reverse(data) : data
 
@@ -83,6 +92,7 @@ const getOptions = (options, defaults) => ({
 module.exports = {
   userSearch,
   organizationSearch,
+  ticketSearch,
   fp: {
     findById,
     identityFn,

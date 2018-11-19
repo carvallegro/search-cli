@@ -30,7 +30,7 @@ index.js                    process+cli.js
                           |     |
                           |     |
                           |     v
-print.js                  |  search/index.js         search/engine.js
+print.js                  |  search/index.js         search/core.js
 +----------------------+  |  +------------------+    +------------------+
 |PRINT                 |  |  |SEARCH            |    |CORE SEARCH       |
 |                      +<-+  |                  +--->+                  |
@@ -49,13 +49,13 @@ It's a very simple interface with no search logic. The only logic implemented is
 
 #### Process
 
-The process search is where the magic happens. It contains most of the "business logic" of the application. It simply hooks together the input, the search and the print layers. 
+The process search is where the magic happens. It contains most of the "business logic" of the application. It simply hooks together the input, the search and the print layers.
 
 It's relatively permissive and will graciously default to default values or empty arrays/objects.
 
 #### Search
 
-The search is split into two parts: the core search (in `search/engine.js` ) and the abstracted search (in `search/index.js`). 
+The search is split into two parts: the core search (in `search/core.js` ) and the abstracted search (in `search/index.js`).
 
 The core search uses [Fuse.js](http://fusejs.io/), a very performant, light-weight, search library. it offers a lot of configuration and fine tuning but for the purpose of this exercise I've only used it to get the ids of the results with a strict threshold.
 
@@ -69,13 +69,17 @@ The print layer uses [chalk](https://github.com/chalk/chalk) and [columnify](htt
 
 ### Precisions
 
+#### Dates
+
+I've noticed that most dates are localized but I couldn't find a good way to display them in such a context (terminal with limited space).
+
 #### Binaries
 
-There are no binaries asnd no way of generating them for this application. It could have been done but I felt like it was over engineering the exercise.
+There are no binaries asnd no way of generating them for this application. It could have been done but I felt like it was over coreering the exercise.
 
 The code needs to be run using NPM or Yarn.
 
-#### (Pure?) Functional programming 
+#### (Pure?) Functional programming
 
 This exercise allowed me to try out [Pure Functional programming](https://github.com/MostlyAdequate/mostly-adequate-guide) but, being a concept I'm not familiar with, it impacted my velocity. I decided to only use it in the search code files. It was a good exercise and allowed me to play around. I know I could have done thing differently (a bit closer to the Pure functional theory) but I couldn't figure out how and did not want to spend too much time on it. The interface with the rest of the code is not pure functional as it have more than one parameter.
 

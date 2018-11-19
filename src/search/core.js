@@ -2,8 +2,7 @@ const Fuse = require('fuse.js')
 
 const DEFAULT_OPTIONS = {
   id: '_id',
-  threshold: 0,
-  location: 0,
+  threshold: 0.2,
   distance: 100,
   maxPatternLength: 32,
   minMatchCharLength: 3
@@ -17,7 +16,6 @@ const search = data => (query, options = {}) =>
 
 const generateSearchEngine = data => options => query =>
   search(data)(query, { keys: options.keys })
-
 
 module.exports = {
   search,
