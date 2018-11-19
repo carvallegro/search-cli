@@ -22,7 +22,6 @@ const runSearchOn = domain => (query, cmd) => {
 
   const options = generateOptions(cmd.parent)
   const result = domains[domain].search(query, options)
-  print.listUsers(result)
   domains[domain].print(result)
   process.exit(0)
 }
