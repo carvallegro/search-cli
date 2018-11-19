@@ -69,8 +69,8 @@ const organizationSearch = (query, options = {}) =>
 const ticketSearch = (query, options = {}) =>
   search(ticketData)(getOptions(options, TICKET_OPTIONS))(query)
 
-const searchUserById = id => find(u => u._id == id)(userData)
-const searchOrganizationById = id => find(o => o._id == id)(organizationData)
+const findUserById = id => find(u => u._id == id)(userData)
+const findOrganizationById = id => find(o => o._id == id)(organizationData)
 
 const search = data => options =>
   pipe(
@@ -96,8 +96,8 @@ module.exports = {
   userSearch,
   organizationSearch,
   ticketSearch,
-  searchUserById,
-  searchOrganizationById,
+  findUserById,
+  findOrganizationById,
   fp: {
     findById,
     identityFn,

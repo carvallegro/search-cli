@@ -1,9 +1,13 @@
 const join = require('lodash/join')
 const isEmpty = require('lodash/isEmpty')
+const isNil = require('lodash/isNil')
+
 const chalk = require('chalk')
 const columnify = require('columnify')
-const terminalLink = require('terminal-link')
 const moment = require('moment')
+const terminalLink = require('terminal-link')
+
+const {findOrganizationById, findUserById} = require('./search')
 
 const ZENDESK_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss ZZ'
 
@@ -37,7 +41,7 @@ const getUserLineData = user => ({
   id: chalk.grey(getLink(user._id, user.url)),
   status: user.verified ? '✅' : '❌',
   name: `${chalk.green(user.name)} ${chalk.grey(`(aka ${user.alias})`)}`,
-  organisation: user.organization_id,
+  organisation: getOrganizationCell(user.organization_id),
   'contact details': `email: ${chalk.blue(user.email)}
     phone: ${chalk.cyan(user.phone)}`,
   tags: join(user.tags, ','),
@@ -82,15 +86,41 @@ const getTicketLine = (ticket) => ({
   type: enrichType(ticket.type),
   priority: enrichPriority(ticket.priority),
   status: enrichStatus(ticket.status),
-  assignee_id: ticket.assignee_id,
-  submitter_id: ticket.submitter_id,
-  organization_id: ticket.organization_id,
+  assignee_id: getUserCell(ticket.assignee_id),
+  submitter_id: getUserCell(ticket.submitter_id),
+  org: getOrganizationCell(ticket.organization_id),
   created: `${dateFrom(ticket.created_at)}
   ${chalk.grey(formatDate(ticket.created_at))}`,
   due: `${dateFrom(ticket.due_at)}
   ${chalk.grey(formatDate(ticket.due_at))}`,
   tags: join(ticket.tags, ', ')
 })
+
+const getOrganizationCell = organizationId => {
+  if(isNil(organizationId)) {
+    return undefined
+  }
+
+  const organization = findOrganizationById(organizationId)
+  if(isNil(organization)){
+    return undefined;
+  }
+
+  return `${organization.name} ${chalk.grey(organizationId)}`
+}
+
+const getUserCell = userId => {
+  if(isNil(userId)) {
+    return undefined
+  }
+
+  const user = findUserById(userId)
+  if(isNil(user)){
+    return undefined;
+  }
+
+  return `${user.name} ${chalk.grey(userId)}`
+}
 
 const printColumns = (items, config = {}) => console.log(columnify(items, { ...COMMON_CONFIG, ...config}))
 
@@ -201,6 +231,8 @@ module.exports = {
   printOrganizations,
   printTickets,
   utils: {
+    getOrganizationCell,
+    getUserCell,
     getLink,
     formatDate,
     dateFrom,

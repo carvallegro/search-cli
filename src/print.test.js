@@ -119,6 +119,42 @@ describe('Printing features', () => {
 })
 
 describe('utils', () => {
+  describe('getUserCell', ()=>{
+    it('should return undefined when no id', () => {
+      const actual = utils.getUserCell(undefined)
+      expect(actual).to.be.undefined
+    })
+
+    it('should return undefined when there is no user', () => {
+      const actual = utils.getUserCell(-1)
+      expect(actual).to.be.undefined
+    })
+
+    it('should return the user cell when there is a user', () => {
+      const actual = utils.getUserCell(1)
+      const expected = `Francisca Rasmussen ${chalk.grey(1)}`
+      expect(actual).to.be.equal(expected)
+    })
+  })
+
+  describe('getOrganizationCell', ()=>{
+    it('should return undefined when no id', () => {
+      const actual = utils.getOrganizationCell(undefined)
+      expect(actual).to.be.undefined
+    })
+
+    it('should return undefined when there is no organization', () => {
+      const actual = utils.getOrganizationCell(-1)
+      expect(actual).to.be.undefined
+    })
+
+    it('should return the user cell when there is an organization', () => {
+      const actual = utils.getOrganizationCell(101)
+      const expected = `Enthaze ${chalk.grey(101)}`
+      expect(actual).to.be.equal(expected)
+    })
+  })
+
   describe('#getLink', () => {
     it('should return something', () => {
       const result = utils.getLink('text', 'link')
