@@ -39,6 +39,12 @@ program
   .action(processCli.runSearchOn('tickets'))
 
 program
+  .command('print-keys')
+  .alias('pk')
+  .description('Displays all of the keys for, respectively, users, organizations and tickets')
+  .action(processCli.printKeys)
+
+program
   .on('command:*', () => {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
     process.exit(1)

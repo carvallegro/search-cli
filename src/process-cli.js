@@ -1,7 +1,7 @@
 const split = require('lodash/split')
 const isNil = require('lodash/isNil')
 
-const search = require('./search/index')
+const search = require('./search')
 const print = require('./print')
 
 const domains= {
@@ -48,8 +48,11 @@ const generateKeys = function(attributes) {
   return split(attributes, ',')
 }
 
+const printKeys = () => print.printKeys(search.keys)
+
 module.exports = {
   runSearchOn,
   generateOptions,
-  generateKeys
+  generateKeys,
+  printKeys
 }
