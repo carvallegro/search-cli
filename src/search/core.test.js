@@ -2,6 +2,8 @@ const expect = require('chai').expect
 
 const search = require('./core')
 
+const datadata = require('./data/tickets.json')
+
 const testData = [
   {
     _id: 1,
@@ -150,11 +152,16 @@ describe('the search engine', () => {
   })
 
   it('should return an array of XX when searching for "Gran" with all keys', () => {
-    const expectedLength = 2
+    const expectedLength = 3
     const actual = search.search(testData)('Gran', {
       keys: ['title', 'author.firstName', 'author.lastName']
     })
 
     expect(actual).to.have.length(expectedLength)
   })
+})
+
+it('test', () => {
+  const actual = search.search(datadata)('incide', { keys: ['_id', 'type'] })
+  expect(actual).not.to.be.empty
 })

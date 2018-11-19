@@ -17,17 +17,16 @@ const COMMON_CONFIG = {
   }
 }
 
-const USER_CONFIG = COMMON_CONFIG
-
-const listUsers = (users = []) => {
+const printUsers = (users = []) => {
   if (isEmpty(users)) {
     console.error(chalk.red('No users were found...'))
   }
-  console.log(columnify(users.map(getUserLineData), USER_CONFIG))
+  const usersToPrint = users.map(getUserLineData)
+  printColumns(usersToPrint)
 }
 
 const getUserLineData = user => ({
-  id: getChalkedId(user),
+  id: chalk.grey(getLink(user._id, user.url)),
   status: user.verified ? '✅' : '❌',
   name: `${chalk.green(user.name)} ${chalk.grey(`(aka ${user.alias})`)}`,
   organisation: user.organization_id,
@@ -37,16 +36,17 @@ const getUserLineData = user => ({
   'last activity': moment(user.last_login_at, ZENDESK_DATE_FORMAT).from()
 })
 
-const listOrganizations = (organizations = []) => {
+const printOrganizations = (organizations = []) => {
   if (isEmpty(organizations)) {
     console.error(chalk.red('No organizations were found...'))
   }
 
-  console.log(columnify(organizations.map(getOrganizationLine), COMMON_CONFIG))
+  const organizationsToPrint = organizations.map(getOrganizationLine)
+  printColumns(organizationsToPrint)
 }
 
 const getOrganizationLine = organization => ({
-  id: getChalkedId(organization),
+  id: chalk.grey(getLink(organization._id, organization.url)),
   name: `${chalk.green(organization.name)} ${chalk.grey(`(${organization.details})`)}`,
   'shared tickets': organization.shared_tickets ? '✅' : '❌',
   created: moment(organization.created_at, ZENDESK_DATE_FORMAT).from(),
@@ -54,9 +54,27 @@ const getOrganizationLine = organization => ({
   'domain names': organization.domain_names.join(', ')
 })
 
-const getChalkedId = entity => terminalLink.isSupported ? terminalLink(chalk.grey(entity._id), entity.url) : chalk.grey(entity._id)
+const printTickets = (tickets = []) =>
+{
+  if (isEmpty(tickets)) {
+    console.error(chalk.red('No tickets were found...'))
+  }
+
+  const items = tickets.map(getTicketLine)
+  printColumns(items)
+}
+
+const getTicketLine = (ticket) => ({
+  subject: `${ticket.subject}
+  ${chalk.grey(`(id: ${getLink(ticket)})`)}`,
+})
+
+const getLink = (text, link) => terminalLink.isSupported ? terminalLink(text, link) : text
+
+const printColumns = items => console.log(columnify(items, COMMON_CONFIG))
 
 module.exports = {
-  listUsers,
-  listOrganizations
+  printUsers,
+  printOrganizations,
+  printTickets
 }

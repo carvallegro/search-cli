@@ -1,7 +1,7 @@
 var expect = require('chai').expect
 require('mocha-sinon')
 
-const { listUsers, listOrganizations } = require('./print')
+const { printUsers, printOrganizations } = require('./print')
 
 describe('Printing features', () => {
 
@@ -17,17 +17,17 @@ describe('Printing features', () => {
 
   describe('Printing users', () => {
     it('should print an error on console.error when there is an empty array', () => {
-      listUsers([])
+      printUsers([])
       expect(console.error.calledOnce).to.be.true
     })
 
     it('should print an error on console.error when there is no array', () => {
-      listUsers()
+      printUsers()
       expect(console.error.calledOnce).to.be.true
     })
 
     it('should print one array with id, name and alias', () => {
-      listUsers([{
+      printUsers([{
         '_id': 5,
         name: 'name',
         alias: 'alias',
@@ -41,7 +41,7 @@ describe('Printing features', () => {
     })
 
     it('should print one array with verified true', () => {
-      listUsers([{
+      printUsers([{
         verified: true
       }])
 
@@ -49,7 +49,7 @@ describe('Printing features', () => {
     })
 
     it('should print one array with name and alias', () => {
-      listUsers([{
+      printUsers([{
         name: 'name',
         alias: 'alias'
       }])
@@ -61,17 +61,17 @@ describe('Printing features', () => {
 
   describe('Printing organizations', () => {
     it('should print an error on console.error when there is an empty array', () => {
-      listOrganizations([])
+      printOrganizations([])
       expect(console.error.calledOnce).to.be.true
     })
 
     it('should print an error on console.error when there is no array', () => {
-      listOrganizations()
+      printOrganizations()
       expect(console.error.calledOnce).to.be.true
     })
 
     it('should print one array with id, name and alias', () => {
-      listUsers([{
+      printUsers([{
         '_id': 108,
         'url': 'http://initech.zendesk.com/api/v2/organizations/108.json',
         'external_id': 'be72663b-338d-42f4-bd52-cf6584cad674',
@@ -91,7 +91,7 @@ describe('Printing features', () => {
     })
 
     it('should print one array with no shared tickets', () => {
-      listUsers([{
+      printUsers([{
         'shared_tickets': false
       }])
 
@@ -99,7 +99,7 @@ describe('Printing features', () => {
     })
 
     it('should print one array with shared tickets', () => {
-      listUsers([{
+      printUsers([{
         'shared_tickets': true
       }])
 

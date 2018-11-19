@@ -33,6 +33,12 @@ program
   .action(processCli.runSearchOn('organizations'))
 
 program
+  .command('tickets <query>')
+  .alias('t')
+  .description('Search through the tickets in the "database')
+  .action(processCli.runSearchOn('tickets'))
+
+program
   .on('command:*', () => {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '))
     process.exit(1)

@@ -6,12 +6,12 @@ describe('Functional programming utilities', () => {
   2
   describe('#identityFn', () => {
     it('should return true', () => {
-      const actual = fp.identityFn([1, 2, 3])({ _id: 1 })
+      const actual = fp.identityFn(['1', '2', '3'])({ _id: '1' })
       expect(actual).to.be.true
     })
 
     it('should return false', () => {
-      const actual = fp.identityFn([])({ _id: 1 })
+      const actual = fp.identityFn([])({ _id: '1' })
       expect(actual).to.be.false
     })
   })
@@ -39,7 +39,7 @@ describe('Functional programming utilities', () => {
           name: 'Harry'
         }
       ]
-      const actual = fp.findById(testData)([1])
+      const actual = fp.findById(testData)(['1'])
 
       expect(actual).to.deep.equal(expected)
     })
