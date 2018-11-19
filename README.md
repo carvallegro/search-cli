@@ -1,6 +1,27 @@
 # CLI Search [![Build Status](https://travis-ci.com/carvallegro/toy-robot-java.svg?branch=master)](https://travis-ci.com/carvallegro/toy-robot-java) [![codecov](https://codecov.io/gh/carvallegro/search-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/carvallegro/search-cli) [![CodeFactor](https://www.codefactor.io/repository/github/carvallegro/search-cli/badge)](https://www.codefactor.io/repository/github/carvallegro/search-cli)
 > See [Instructions](./INSTRUCTIONS.md)
 
+## Table of Content
+* [Install and run](#install-and-run)
+  * [Usage](#usage)
+    + [Commands](#commands)
+    + [Options](#options)
+  * [Technical decisions](#technical-decisions)
+    + [Architecture](#architecture)
+      - [Input](#input)
+      - [Process](#process)
+      - [Search](#search)
+      - [Print](#print)
+    + [Precisions](#precisions)
+      - [Dates](#dates)
+      - [Binaries](#binaries)
+      - [(Pure?) Functional programming](#pure-functional-programming)
+      - [Tests](#tests)
+      - [CI/CD](#cicd)
+  * [Dependencies](#dependencies)
+    + [Search libraries](#search-libraries)
+    + [CLI utilities](#cli-utilities)
+    + [General libraries](#general-libraries)
 
 
 ## Install and run
@@ -166,9 +187,3 @@ Given more time or a professional project I'd have run pre-commit hooks to run l
 
 - [Lodash](https://lodash.com/docs/4.17.11): because Lodash.
 - [moment](https://momentjs.com): For a better time display.
-
-### Potential dependencies
-
-- https://github.com/matiassingers/emoji-flags
-- https://github.com/f/omelette
-- https://github.com/isaacs/node-jake
