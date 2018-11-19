@@ -131,6 +131,18 @@ describe('the search functions', () => {
 
       expect(actual).to.deep.equal(expected)
     })
+
+    it('should return undefined when no id', () => {
+      const actual = searchUserById(undefined)
+
+      expect(actual).to.be.undefined
+    })
+
+    it('should return undefined when does not exist', () => {
+      const actual = searchUserById(-1)
+
+      expect(actual).to.be.undefined
+    })
   })
 
   describe('Search organization by id', () => {
@@ -156,6 +168,18 @@ describe('the search functions', () => {
       const actual = searchOrganizationById(101)
 
       expect(actual).to.deep.equal(expected)
+    })
+
+    it('should return undefined when no id', () => {
+      const actual = searchOrganizationById(undefined)
+
+      expect(actual).to.be.undefined
+    })
+
+    it('should return undefined when does not exist', () => {
+      const actual = searchOrganizationById(-1)
+
+      expect(actual).to.be.undefined
     })
   })
 })
