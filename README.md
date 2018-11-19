@@ -5,15 +5,53 @@
 
 ## Install and run
 
+Pre requisites:
+- nvm
+- Node v10.12.0
+- yarn
+
+Install dependencies with :
+```
+# If you use yarn
+yarn
+
+#If you use npm
+npm i
+```
+
+To run the CLI:
+```
+(npm|yarn) start <command> <options>
+```
+
+Find the different commands and options in the next step
+
 ## Usage
 
-### Search
+```
+(npm|yarn) start <command> <options> <query>
+```
 
-### Get keys
 
-### Help
+### Commands
+
+  - `users` (shortcut: `u`): Search through the users in the "database
+  - `organizations`: (shortcut: `o`): Search through the organisations in the "database
+  - `tickets` (shortcut: `t`): Search through the tickets in the "database
+  - `print-keys`(shortcut: `pk`): Displays all of the keys for, respectively, users, organizations and tickets.
+
+### Options
+
+  - `-V`, `--version`: output the version number
+  - `-a`, `--attributes`: Followed with a comma-separated list. The attributes to search in. (default: "all")
+  - `-s`, `--sort-by`: Followed with a comma-separated list. The attributes to sort the result by. Comma separated list.
+  - `-s`, `--sort-order`: The sorting order. asc or desc. (default: "asc")
+  - `-h`, `--help`: output usage information
+
 
 ## Technical decisions
+
+
 
 ### Architecture
 

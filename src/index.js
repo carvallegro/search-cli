@@ -18,7 +18,7 @@ program.on('--help', function() {
 program
   .option('-a, --attributes [attrs]', 'The attributes to search in. Comma separated list', 'all')
   .option('-s, --sort-by [attrs]', 'The attributes to sort the result by. Comma separated list.')
-  .option('-s, --sort-order [type]', 'The attributes to sort the result by. asc or desc.', 'asc')
+  .option('-s, --sort-order [type]', 'The sorting order. asc or desc.', 'asc')
 
 program
   .command('users <query>')
@@ -41,7 +41,7 @@ program
 program
   .command('print-keys')
   .alias('pk')
-  .description('Displays all of the keys for, respectively, users, organizations and tickets')
+  .description('Displays all of the keys for, respectively, users, organizations and tickets.')
   .action(processCli.printKeys)
 
 program

@@ -17,6 +17,7 @@
     "commander": "^2.19.0",
     "fuse.js": "^3.3.0",
     "lodash": "^4.17.11",
+    "markdown-toc": "^1.2.0",
     "mocha-sinon": "^2.1.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.23",
