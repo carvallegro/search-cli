@@ -2,7 +2,7 @@ const pipe = require('lodash/fp/pipe')
 const map = require('lodash/fp/map')
 const includes = require('lodash/fp/includes')
 const filter = require('lodash/fp/filter')
-const toInteger = require('lodash/fp/toInteger')
+const find = require('lodash/fp/find')
 const toString = require('lodash/fp/toString')
 const sortBy = require('lodash/fp/sortBy')
 const reverse = require('lodash/fp/reverse')
@@ -69,6 +69,9 @@ const organizationSearch = (query, options = {}) =>
 const ticketSearch = (query, options = {}) =>
   search(ticketData)(getOptions(options, TICKET_OPTIONS))(query)
 
+const findUserById = id => find(u => u._id == id)(userData)
+const findOrganizationById = id => find(o => o._id == id)(organizationData)
+
 const search = data => options =>
   pipe(
     generateSearchEngine(data)(options),
@@ -93,6 +96,8 @@ module.exports = {
   userSearch,
   organizationSearch,
   ticketSearch,
+  findUserById,
+  findOrganizationById,
   fp: {
     findById,
     identityFn,
