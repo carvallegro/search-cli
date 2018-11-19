@@ -19,6 +19,7 @@
     "lodash": "^4.17.11",
     "mocha-sinon": "^2.1.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "sinon": "^7.1.1",
     "string-width": "^2.1.1",
     "terminal-link": "^1.1.0"

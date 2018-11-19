@@ -69,6 +69,10 @@ The print layer uses [chalk](https://github.com/chalk/chalk) and [columnify](htt
 
 ### Precisions
 
+#### Dates
+
+I've noticed that most dates are localized but I couldn't find a good way to display them in such a context (terminal with limited space).
+
 #### Binaries
 
 There are no binaries asnd no way of generating them for this application. It could have been done but I felt like it was over coreering the exercise.

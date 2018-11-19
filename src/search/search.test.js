@@ -69,7 +69,7 @@ describe('the search functions', () => {
       expect(actual).to.be.empty
     })
 
-    it.skip('should return the ticket "A Catastrophe in Micronesia"', () => {
+    it('should return the ticket "A Catastrophe in Micronesia"', () => {
       const expected = {
         _id: '1a227508-9f39-427c-8f57-1b72f3fab87c',
         url:
