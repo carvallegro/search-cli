@@ -6,7 +6,7 @@ const toInteger = require('lodash/fp/toInteger')
 const sortBy = require('lodash/fp/sortBy')
 const reverse = require('lodash/fp/reverse')
 const defaultTo = require('lodash/fp/defaultTo')
-const {generateSearchEngine} = require('./engine')
+const {generateSearchEngine} = require('./core')
 
 const userData = require('./data/users.json')
 const organizationData = require('./data/organizations.json')

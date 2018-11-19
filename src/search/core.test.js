@@ -1,6 +1,6 @@
 const expect = require('chai').expect
 
-const search = require('./engine')
+const search = require('./core')
 
 const testData = [
   {
